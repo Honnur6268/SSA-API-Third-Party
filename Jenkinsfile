@@ -31,5 +31,10 @@ pipeline{
                 }
             }
         }
+        stage('deploy'){
+            steps{
+                sh 'docker run -d -p 7000:7000 --name ssa-api-contianer-deploy 7256268/ssa-api'
+            }
+        }
     }
 }
