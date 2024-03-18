@@ -23,7 +23,7 @@ public class SSACitizenDetialsRestController {
 	private SSACitizenDetialsService detialsService;
 
 	@PostMapping("/ssn-api")
-	public ResponseEntity<String> getSSNDetails(@RequestBody SSACitizenDetialsRequest request) {
+	public ResponseEntity<?> getSSNDetails(@RequestBody SSACitizenDetialsRequest request) {
 		SSACitizenDetialsResponse ssnDetails = detialsService.checkSSN(request);
 		Map<String, String> error = new HashMap<>();
 		
@@ -33,7 +33,7 @@ public class SSACitizenDetialsRestController {
 		else {
 			
 			error.put("errorMessage", "Invalid SSN: " + ssnDetails.getSsn());
-			return new ResponseEntity<>("Invalid SSN", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 		}
 	}
 }
