@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,17 +21,16 @@ public class SSACitizenDetialsRestController {
 	private SSACitizenDetialsService detialsService;
 
 	@PostMapping("/ssn-api")
-	public ResponseEntity<?> getSSNDetails(@RequestBody SSACitizenDetialsRequest request) {
+	public String getSSNDetails(@RequestBody SSACitizenDetialsRequest request) {
 		SSACitizenDetialsResponse ssnDetails = detialsService.checkSSN(request);
 		Map<String, String> error = new HashMap<>();
-		
+
 		if (ssnDetails.getStateName() != null) {
-			return ResponseEntity.ok(ssnDetails.getStateName());
-		} 
-		else {
-			
+			return ssnDetails.getStateName();
+		} else {
+
 			error.put("errorMessage", "Invalid SSN: " + ssnDetails.getSsn());
-			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+			return "Invalid SSN";
 		}
 	}
 }
