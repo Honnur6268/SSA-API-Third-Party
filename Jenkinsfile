@@ -18,7 +18,7 @@ pipeline{
         }
         stage('docker image'){
             steps{
-                sh 'docker build -t 7256268/ssa-api .'
+                sh 'docker build -t 7256268/ssa-api-2 .'
             }
         }
         stage('docker push'){
@@ -27,13 +27,13 @@ pipeline{
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                     sh 'docker login -u 7256268 -p ${dockerhubpwd} '
                     }
-                    sh 'docker push 7256268/ssa-api'
+                    sh 'docker push 7256268/ssa-api-2'
                 }
             }
         }
         stage('deploy'){
             steps{
-                sh 'docker run -d -p 7000:7000 --name ssa-api-contianer-deploy 7256268/ssa-api'
+                sh 'docker run -d -p 7000:7000 --name ssa-api-contianer-deploy 7256268/ssa-api-2'
             }
         }
     }
