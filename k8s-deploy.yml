@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: ssaapideployement
+ name: ssaapideployment
 spec:
  replicas: 2
  strategy: 
@@ -18,7 +18,7 @@ spec:
   spec: 
     containers:
     - name: ssaapicontainer
-      image: 7256268/ssa-api-image
+      image: ssa-api-image
       imagePullPolicy: Always
       ports:
       - containerPort: 7000
