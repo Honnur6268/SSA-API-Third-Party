@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
  name: ssaapiappdeployment
 spec:
- replicas: 1
+ replicas: 2
  selector: 
    matchLabels: 
      app: ssaapiapp
@@ -16,7 +16,7 @@ spec:
   spec: 
     containers:
     - name: ssaapiappcontainer
-      image: 7256268/ssa-api:latest
+      image: 7256268/ssa-api:v1
       ports:
       - containerPort: 7000
 ---
