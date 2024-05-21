@@ -5,6 +5,8 @@ metadata:
  name: ssaapiappdeployment
 spec:
  replicas: 2
+ strategy:
+  type: RollingUpdate
  selector: 
    matchLabels: 
      app: ssaapiapp
@@ -16,7 +18,7 @@ spec:
   spec: 
     containers:
     - name: ssaapiappcontainer
-      image: 7256268/ssa-api:v1
+      image: 7256268/ssa-api:1.0
       ports:
       - containerPort: 8080
 ---
