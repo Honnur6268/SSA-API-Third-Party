@@ -1,9 +1,12 @@
 package com.honnur.ssa.restcontroller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,5 +35,10 @@ public class SSACitizenDetialsRestController {
 			error.put("errorMessage", "Invalid SSN: " + ssnDetails.getSsn());
 			return "Invalid SSN";
 		}
+	}
+	
+	@GetMapping("/cities")
+	public List<String> getAllSSNDetails(){
+		return Arrays.asList("New Jersey","Ohio","Texas","California","Rhode Island","Kentucky");
 	}
 }

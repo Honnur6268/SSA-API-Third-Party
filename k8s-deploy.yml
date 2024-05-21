@@ -2,36 +2,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: ssaapideployment
+ name: ssaapiappdeployment
 spec:
- replicas: 2
- strategy: 
-    type: Recreate
+ replicas: 1
  selector: 
    matchLabels: 
-     app: ssa-api
+     app: ssaapiapp
  template:
   metadata:
-   name: ssaapiapppod
+   name: ssaapiapp
    labels:
-     app: ssa-api	 
+     app: ssaapiapp	 
   spec: 
     containers:
-    - name: ssaapicontainer
+    - name: ssaapiappcontainer
       image: ssa-api-image
-      imagePullPolicy: Always
+#      imagePullPolicy: Always
       ports:
-      - containerPort: 7000
+      - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: ssaapiappsvc
+ name: ssaapiappappservice
 spec:
   type: LoadBalancer
   selector:
-   app: ssa-api
+   app: ssaapiapp
   ports:
-   - port: 7000
-     targetPort: 7000
+   - protocol: TCP
+     port: 80
+     targetPort: 8080
 ...
