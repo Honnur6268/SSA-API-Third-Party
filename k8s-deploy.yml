@@ -18,7 +18,7 @@ spec:
     - name: ssaapiappcontainer
       image: 7256268/ssa-api:v1
       ports:
-      - containerPort: 7000
+      - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -31,5 +31,5 @@ spec:
   ports:
    - protocol: TCP
      port: 80
-     targetPort: 7000
+     targetPort: 8080
 ...
