@@ -16,7 +16,7 @@ spec:
   spec: 
     containers:
     - name: ssaapiappcontainer
-      image: ssa-api-v1
+      image: 7256268/ssa-api:latest
       ports:
       - containerPort: 8080
 ---
