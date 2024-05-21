@@ -15,9 +15,15 @@ spec:
      app: ssaapiapp	 
   spec: 
     containers:
+<<<<<<< HEAD
     - name: ssaapiappcontainer
       image: ssa-api-image
 #      imagePullPolicy: Always
+=======
+    - name: ssaapicontainer
+      image: 7256268/ssa-api:latest
+      imagePullPolicy: Always
+>>>>>>> d72401322d4081706fed313415e0899d64a83449
       ports:
       - containerPort: 8080
 ---
@@ -30,7 +36,13 @@ spec:
   selector:
    app: ssaapiapp
   ports:
+<<<<<<< HEAD
    - protocol: TCP
      port: 80
      targetPort: 8080
 ...
+=======
+   - port: 7000
+     targetPort: 7000
+...
+>>>>>>> d72401322d4081706fed313415e0899d64a83449
